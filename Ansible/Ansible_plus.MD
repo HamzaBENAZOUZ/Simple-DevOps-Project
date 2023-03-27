@@ -85,7 +85,7 @@ ansible installé sur la machine
     ansible all -m command -a uptime
     ```
 
-```sh
+   ```sh
 ansible all -a uptime
 ```
 ==> Test non concluant
@@ -144,5 +144,4 @@ docker images
 ```sh
 docker push alexanglais/regapp
 ```
-   
-   
+
