@@ -85,4 +85,64 @@ ansible installé sur la machine
     ansible all -m command -a uptime
     ```
 
-   ![image](https://user-images.githubusercontent.com/64062286/227212303-3ac68f71-c774-4b54-932b-3c1455456ee4.png)
+```sh
+ansible all -a uptime
+```
+==> Test non concluant
+
+Récupérer l'asresse ip du serveur actuel
+```sh
+ifconfig
+```
+
+on peut également utiliser localhost
+
+```sh
+ssh-copy-id adresse ip
+```
+
+Test concluant mnt
+```sh
+ansible all -a uptime
+```
+
+```sh
+cd /opt/docker/
+```
+
+```sh
+
+cat regapp.yml
+---
+- hosts: ansible
+
+  tasks:
+  - name : create docker image
+    command: docker build -t regapp:latest .
+    args:
+      chdir: /opt/docker
+
+```
+
+```sh
+ansible-playbook regapp.yml --check
+```
+
+```sh
+ansible-playbook regapp.yml
+```
+
+```sh
+docker images
+docker tag 0dc772956e85 alexanglais/regapp:latest
+```
+
+```sh
+docker images
+```
+
+```sh
+docker push alexanglais/regapp
+```
+   
+   
