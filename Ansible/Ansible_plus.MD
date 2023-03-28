@@ -145,3 +145,45 @@ docker images
 docker push alexanglais/regapp
 ```
 
+un playbook su va créer un container regapp-server à partir de l'image docker alexanglais/regapp , l'application va etre exposée au port 8082, mais qui va touner sur le port 8080
+
+```sh
+
+---
+- hosts: dockerhost
+
+  tasks:
+  - name: create container
+    command: docker run -d --name regapp-server -p 8082:8080 alexanglais/regapp:latest
+```
+
+Test du playbook : 
+```sh
+ansible-playbook deploy_regapp.yml --check
+```
+
+deploiement du playbook : 
+```sh
+ansible-playbook deploy_regapp.yml --check
+```
+
+Nouveau playbook pour stopper le container , supprimer le container et supprimer l'image
+```sh
+
+
+   ---
+   - hosts: dockerhost
+
+     tasks:
+     - name: stop exesting container
+       command: docker stop regapp-server
+
+     - name: remove the container
+       command: docker rm regapp-server
+
+     - name: remove image
+       command: docker rmi alexanglais/regapp:latest
+
+     - name: create container
+       command: docker run -d --name regapp-server -p 8082:8080 alexanglais/regapp:latest
+   ```
