@@ -177,6 +177,7 @@ Nouveau playbook pour stopper le container , supprimer le container et supprimer
      tasks:
      - name: stop exesting container
        command: docker stop regapp-server
+       ignore_errors: yes
 
      - name: remove the container
        command: docker rm regapp-server
@@ -187,3 +188,4 @@ Nouveau playbook pour stopper le container , supprimer le container et supprimer
      - name: create container
        command: docker run -d --name regapp-server -p 8082:8080 alexanglais/regapp:latest
    ```
+=> ily'a une commande pour ignorer l'erreur en cas de container arreté ignore_errors: yes
