@@ -36,6 +36,11 @@ ansible installé sur la machine
       vi /etc/ansible/hosts
     ```
     
+    To generate an example config file (a "disabled" one with all default settings, commented out):
+    ```sh
+     ansible-config init --disabled > ansible.cfg
+    ```
+   
      Pousser la clé vers le serveur distant ( connexion au serveur ansible)
     ```sh
       ssh-copy-id adresse_ip
